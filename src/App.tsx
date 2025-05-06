@@ -1,13 +1,13 @@
 import "@esri/calcite-components/components/calcite-shell";
 
 import esriConfig from "@arcgis/core/config";
-import { RenderMap } from "../components/RenderMap";
-import { FetchFeatureLayers } from "../components/FetchFeatureLayers";
+import { RenderMap } from "./components/RenderMap";
+import { FetchFeatureLayers } from "./components/FetchFeatureLayers";
 import "./App.css";
 import { useRef, useState } from "react";
-import { RenderCalciteUI } from "../components/RenderCalciteUI";
-import { DisplayCoastalPlaces } from "../components/DisplayCoastalPlaces";
-import { DisplayBusinesses } from "../components/DisplayBusinesses";
+import { RenderCalciteUI } from "./components/RenderCalciteUI";
+import { DisplayCoastalPlaces } from "./components/DisplayCoastalPlaces";
+import { DisplayBusinesses } from "./components/DisplayBusinesses";
 
 function App() {
   esriConfig.apiKey = import.meta.env.VITE_ARCGIS_API_KEY;

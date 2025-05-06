@@ -202,7 +202,7 @@ export async function addResult(
   resultPanel.appendChild(infoDiv);
 }
 
-async function getDetails(
+export async function getDetails(
   fetchPlaceParameters: any,
   infoPanel: any,
   mapViewRef: any,

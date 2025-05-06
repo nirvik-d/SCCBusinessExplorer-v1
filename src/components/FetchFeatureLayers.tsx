@@ -64,7 +64,7 @@ export function FetchFeatureLayers({
   return null;
 }
 
-function createPlaceGraphics(placeFeatures: any) {
+export function createPlaceGraphics(placeFeatures: any) {
   return placeFeatures.map((placeFeature: any) => {
     return new Graphic({
       geometry: placeFeature.geometry,

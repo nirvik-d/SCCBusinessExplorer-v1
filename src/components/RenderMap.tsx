@@ -1,6 +1,3 @@
-/// <reference types="@esri/calcite-components/types/react" />
-/// <reference types="@arcgis/map-components/types/react" />
-
 import { useEffect } from "react";
 import "@arcgis/map-components/components/arcgis-map";
 import "@arcgis/map-components/components/arcgis-zoom";
