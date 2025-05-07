@@ -13,7 +13,7 @@ export function DisplayCoastalPlaces({ mapRef, layerRef }: DisplayPlacesProps) {
     const coastalPlacesLayer = layerRef.current;
     if (!coastalPlacesLayer) return;
 
-    arcgisMap.map.add(coastalPlacesLayer);
+    arcgisMap.map.layers.add(coastalPlacesLayer);
   }, [mapRef, layerRef]);
 
   return null;
