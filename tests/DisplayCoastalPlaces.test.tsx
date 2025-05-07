@@ -5,7 +5,7 @@ import { render } from "@testing-library/react";
 import { DisplayCoastalPlaces } from "../src/components/DisplayCoastalPlaces";
 import React from "react";
 
-describe("createPlaceGraphics", () => {
+describe("DisplayCoastaPlaces component", () => {
   it("displays the correct coastal places", () => {
     const layer = new GraphicsLayer({});
     const map = new Map({
