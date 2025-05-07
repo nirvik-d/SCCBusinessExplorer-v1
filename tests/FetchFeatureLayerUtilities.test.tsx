@@ -1,22 +1,36 @@
 import { describe, it, expect, vi } from "vitest";
 import { createPlaceGraphics } from "../src/components/FetchFeatureLayers";
+import Polygon from "@arcgis/core/geometry/Polygon";
 
 describe("createPlaceGraphics", () => {
-  it("creates the matching city graphic for coastal towns and cities", () => {
-    const mockGraphic = {
-      attributes: { CDTFA_CITY: "Santa Monica" },
-      symbol: {
-        type: "simple-fill",
-        color: [0, 120, 255, 0.5],
-        outline: {
-          color: [0, 0, 0, 0.6],
-          width: 1,
+  it("creates Graphic instances with correct structure", () => {
+    const polygon = new Polygon({
+      rings: [
+        [
+          [-118.5, 33.5],
+          [-118.5, 33.6],
+          [-118.4, 33.6],
+          [-118.4, 33.5],
+          [-118.5, 33.5], // closed ring
+        ],
+      ],
+      spatialReference: { wkid: 4326 },
+    });
+
+    const features = [
+      {
+        geometry: polygon,
+        attributes: {
+          CDTFA_CITY: "Laguna Beach",
+          CENSUS_PLACE_TYPE: "City",
+          CDTFA_COUNTY: "Orange",
         },
       },
-    };
-    const mockLayer = [mockGraphic];
-    const result = createPlaceGraphics(mockLayer);
-    expect(result[0].attributes.CDTFA_CITY).toBe("Santa Monica");
-    expect(result[0].symbol.type).toBe("simple-fill");
+    ];
+
+    const graphics = createPlaceGraphics(features);
+    expect(graphics).toHaveLength(1);
+    expect(graphics[0].geometry).toEqual(features[0].geometry);
+    expect(graphics[0].attributes).toEqual(features[0].attributes);
   });
 });

@@ -17,7 +17,6 @@ interface BusinessesProps {
 
 export function DisplayBusinesses({ mapRef, mapViewRef }: BusinessesProps) {
   useEffect(() => {
-    const currView = mapViewRef.current;
     let infoPanel: any;
     let clickPoint: any;
     let category = "4d4b7105d754a06375d81259";
@@ -34,7 +33,7 @@ export function DisplayBusinesses({ mapRef, mapViewRef }: BusinessesProps) {
     const resultPanel: any = document.getElementById("results");
     const flow: any = document.getElementById("flow");
 
-    currView.on("click", async (event: any) => {
+    mapViewRef.current.on("click", async (event: any) => {
       clearGraphics(placesLayer, bufferLayer, resultPanel, infoPanel);
       clickPoint = {} as any;
       clickPoint.type = "point";
@@ -46,7 +45,6 @@ export function DisplayBusinesses({ mapRef, mapViewRef }: BusinessesProps) {
           bufferLayer,
           placesLayer,
           category,
-          currView,
           resultPanel,
           infoPanel,
           mapViewRef,
@@ -62,7 +60,6 @@ export function DisplayBusinesses({ mapRef, mapViewRef }: BusinessesProps) {
           bufferLayer,
           placesLayer,
           category,
-          currView,
           resultPanel,
           infoPanel,
           mapViewRef,
@@ -93,7 +90,6 @@ export async function showPlaces(
   bufferLayer: any,
   placesLayer: any,
   category: any,
-  currView: any,
   resultPanel: any,
   infoPanel: any,
   mapViewRef: any,
@@ -130,7 +126,6 @@ export async function showPlaces(
   tabulateResults(
     results,
     placesLayer,
-    currView,
     resultPanel,
     infoPanel,
     mapViewRef,
@@ -141,7 +136,6 @@ export async function showPlaces(
 export async function tabulateResults(
   results: any,
   placesLayer: any,
-  currView: any,
   resultPanel: any,
   infoPanel: any,
   mapViewRef: any,
@@ -151,7 +145,6 @@ export async function tabulateResults(
     addResult(
       placeResult,
       placesLayer,
-      currView,
       resultPanel,
       infoPanel,
       mapViewRef,
@@ -163,7 +156,6 @@ export async function tabulateResults(
 export async function addResult(
   placeResult: any,
   placesLayer: any,
-  currView: any,
   resultPanel: any,
   infoPanel: any,
   mapViewRef: any,
@@ -186,11 +178,11 @@ export async function addResult(
     (placeResult.distance / 1000).toFixed(1)
   )} km`;
   infoDiv.addEventListener("click", async () => {
-    currView.openPopup({
+    mapViewRef.current.openPopup({
       title: placeResult.name,
       location: placeResult.location,
     });
-    currView.goTo(placeGraphic);
+    mapViewRef.current.goTo(placeGraphic);
 
     const fetchPlaceParameters = new FetchPlaceParameters({
       placeId: placeResult.placeId,
